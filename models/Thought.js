@@ -8,6 +8,7 @@ const thoughtSchema = new Schema(
             minlength: 1,
             required: true,
         },
+        reactions: [reactionSchema],
         createdAt: {
             type: Date,
             default: Date.now,
@@ -19,6 +20,10 @@ const thoughtSchema = new Schema(
         },
     }
 );
+
+thoughtSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
+})
 
 const Thought = model('Though', thoughtSchema);
 module.exports = Thought
