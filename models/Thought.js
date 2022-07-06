@@ -12,7 +12,13 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
         },
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        },
     }
 );
 
-module.exports = thoughtSchema
+const Thought = model('Though', thoughtSchema);
+module.exports = Thought
