@@ -9,7 +9,7 @@ module.exports = {
         return res.status(500).json(err);
         })
     },
-    createUser(req, res) {
+    addUser(req, res) {
         User.create(req.body)
             .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err))
@@ -25,6 +25,6 @@ module.exports = {
             console.log(err);
             res.status(500).json(err);
         });
-    }
+    },
 
 }
