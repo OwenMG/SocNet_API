@@ -38,5 +38,17 @@ module.exports = {
             console.err(err);
             return res.status(500).json(err);
         })
+    },
+    updateUser(req,res) {
+        User.findOneAndUpdate({ _id: req.params.userId }, body, { new: true, runValidators: true })
+        .then((user) => {
+            !user
+                ? res.status(404).json({ message: 'No matching user to update'})
+                : res.json({ message: 'user updated'})
+        })
+        .catch((err) => {
+            console.err(err);
+            return res.status(500).json(err);
+        })
     }
 }
